@@ -1,0 +1,50 @@
+<div id="sede">
+					<label> SEDE DI LAVORO </label>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="inputEmail4">Palazzo</label><br><BR>
+							<?php
+							include("../dbase/db.php");
+							$stringa="select IDENTIFICATIVOUL,DENOMINAZIONE,INDIRIZZO,COMUNE,CAP,PROVINCIA,SIGLAPROVINCIA From sede";
+									
+									$stmt = $db_con->prepare($stringa);
+									$stmt->execute();
+															
+							
+							?>
+							<!--<input type="text" class="form-control" id="palazzo">-->
+														
+						  <select title="Scegli una opzione" id="selezionadipartimenti">
+						  <?php 
+							while($rs=$stmt->fetch(PDO::FETCH_ASSOC))
+									{
+							?>
+							<option value="<?php echo $rs['IDENTIFICATIVOUL']?>"><?php echo $rs['DENOMINAZIONE']?></option>
+							<?php 
+									}
+							?>
+							
+						  </select>
+							
+						</div>
+						<div class="form-group col-md-6">
+							<label for="exampleInputPassword">Scala</label><br>
+							<input type="text" class="form-control input-password" id="scala">
+							
+							
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="inputEmail4">Piano</label><br><BR>
+							<input type="text" class="form-control" id="piano" >
+							
+						</div>
+						<div class="form-group col-md-6">
+							<label for="exampleInputPassword">Stanza</label><br>
+							<input type="text" class="form-control input-password" id="stanza" >
+							
+							
+						</div>
+					</div>
+				</div>
